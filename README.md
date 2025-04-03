@@ -12,7 +12,8 @@
 3. Implement swipe-to-delete functionality in the list.
 4. Implement navigation using the coordinator pattern.
 5. Create a SwiftUI detail view; design is up to you :) 👩🏽‍🎨 👨🏼‍🎨.
-6. **Bonus:** Add a demo mode by replacing a Service, which should return static data instead of the one returned by the networking service.
+6. **Bonus 1:** Add a demo mode by replacing a Service, which should return static data instead of the one returned by the networking service.
+7. **Bonus 2:** Develop a second version of the getForecast method from ForecastNetworkServiceImpl that supports Async/Await
 
 ## Info
 
