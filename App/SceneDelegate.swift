@@ -4,20 +4,37 @@
 //
 //
 
+import Global
 import GlobalUI
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    private var listCoordinator: ListViewCoordinator?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         Theme.setup()
+
+        GlobalContainer.reset()
+        let manager = ModuleManager.shared
+        manager.register(module: ForecastModule())
+        manager.modules.forEach { $0.registerServices() }
+
         let window = UIWindow(windowScene: windowScene)
 
-        ListViewCoordinator().start(window: window)
+        // We keep a strong reference to the coordinator here and using as root coordinator for now.
+        // Before is was created this way - ListViewCoordinator().start(window:),
+        // and instance was immediately deallocated after start(),
+        // and any weak self references inside its closures was nil.
+        // By storing it in a property (listCoordinator), we ensure the
+        // coordinator lives for the lifetime of the scene.
+
+        let coordinator = ListViewCoordinator()
+        coordinator.start(window: window)
+        self.listCoordinator = coordinator
 
         self.window = window
         window.makeKeyAndVisible()

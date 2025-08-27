@@ -37,6 +37,8 @@ class ListViewController: UIViewController {
     private func configure() {
         tableView.configure(sections: viewModel.datas)
         tableView.backgroundColor = GlobalColor.backgroundColor
+        tableView.parentViewController = self
+        tableView.tableViewDelegate = self
     }
 
     private func setupLayout() {
@@ -48,4 +50,7 @@ class ListViewController: UIViewController {
         ])
         navigationController?.navigationBar.prefersLargeTitles = false
     }
+}
+
+extension ListViewController: TableViewDelegate {
 }

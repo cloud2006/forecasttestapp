@@ -12,7 +12,7 @@ class ListCellData: TableViewData {
     private var forecast: ForecastItem
 
     var title: String {
-        ""
+        "\(forecast.day), \(forecast.description)"
     }
 
     init(forecast: ForecastItem) {
@@ -21,14 +21,11 @@ class ListCellData: TableViewData {
     }
 
     override func hash(into hasher: inout Hasher) {
-        // TODO
-        // hasher.combine("\(forecast.day)")
+        hasher.combine(forecast.day)
     }
 
     override func isEqual(to other: TableViewData) -> Bool {
         guard let other = other as? ListCellData else { return false }
-        // TODO
-        // return self.forecast.day == other.forecast.day
-        return false
+         return self.forecast.day == other.forecast.day
     }
 }

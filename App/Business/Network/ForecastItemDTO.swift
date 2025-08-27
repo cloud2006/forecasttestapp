@@ -22,3 +22,18 @@ struct ForecastItemDTO: Codable {
         case high, low, type
     }
 }
+
+extension ForecastItemDTO {
+    func toDomain() -> ForecastItem {
+        ForecastItem(
+            day: day,
+            description: description,
+            sunrise: sunrise,
+            sunset: sunset,
+            chanceRain: chanceRain,
+            high: high,
+            low: low,
+            type: type
+        )
+    }
+}
